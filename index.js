@@ -1,9 +1,18 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
 var oddhold;
 var pairs = {};
 var loose;
+
+var a = 0;
+var path = require('path')
+var express = require('express')
+
+app.use(express.static('public'))
+
+
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });

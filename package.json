@@ -1,9 +1,17 @@
 {
   "name": "placeIt",
   "version": "0.0.1",
-  "description": "first atttempt at a chat game",
+  "description": "Looking for clues, travelling to places, discovering new poeple",
   "dependencies": {
     "express": "^4.15.2",
     "socket.io": "^1.7.3"
+  },
+  "scripts": {
+    "build-css": "node-sass --include-path scss scss/main.scss public/css/style.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0"
   }
 }
