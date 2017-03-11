@@ -10,7 +10,13 @@ body {
   margin: auto;
   font-size: 60px; }
 
+.highlight {
+  color: darkred; }
+
 .content {
+  position: absolute;
+  top: 15%;
+  left: 50%;
   transform: translate(-50%, -50%);
   height: 160px;
   overflow: hidden;
@@ -22,7 +28,7 @@ body {
     font-weight: 600;
     overflow: hidden;
     height: 40px;
-    padding: 0 40px; }
+    padding: 0 20px; }
     .content__container:before {
       content: '[';
       left: 0; }
@@ -48,7 +54,7 @@ body {
       margin: 0; }
     .content__container__list {
       margin-top: 0;
-      padding-left: 110px;
+      padding-left: 60px;
       text-align: left;
       list-style: none;
       -webkit-animation-name: change;
@@ -162,11 +168,15 @@ form button {
 
 #messages {
   list-style-type: none;
-  margin: 0;
-  padding: 0; }
+  margin: 70px auto;
+  width: 60%; }
 
 #messages li {
   padding: 5px 10px; }
 
 #messages li:nth-child(odd) {
   background: #eee; }
+
+#form {
+  width: 60%;
+  margin: 0 auto; }

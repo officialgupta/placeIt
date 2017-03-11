@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>Socket.IO chat</title>
+		<title>PlaceIt</title>
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 		<link rel="stylesheet" href="/css/style.css"/>
@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-
+		<!-- The title -->
 		<div class="content">
 			<div class="content__container">
 				<p class="content__container__text">
@@ -33,18 +33,22 @@
 				</p>
 
 				<ul class="content__container__list">
-					<li class="content__container__list__item">world !</li>
-					<li class="content__container__list__item">bob !</li>
-					<li class="content__container__list__item">users !</li>
-					<li class="content__container__list__item">everybody !</li>
+					<li class="content__container__list__item">London!</li>
+					<li class="content__container__list__item">Edinburgh!</li>
+					<li class="content__container__list__item">Manchester!</li>
+					<li class="highlight" class="content__container__list__item">IT!</li>
 				</ul>
 			</div>
 		</div>
 
-		<ul id="messages"></ul>
-		<form action="">
-			<input id="m" autocomplete="off" /><button>Send</button>
-		</form>
+		<!-- Form -->
+		<div>
+			<ul id="messages"></ul>
+			<form id="form" action="">
+				<input id="m" autocomplete="off" />
+				<button>Send!</button>
+			</form>
+		</div>
 	</body>
 
 </html>

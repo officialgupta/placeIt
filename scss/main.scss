@@ -18,9 +18,13 @@ body {
     font-size: 60px;
 }
 
+.highlight{
+    color: darkred;
+}
+
 .content {
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 160px;
@@ -35,7 +39,7 @@ body {
     font-weight: 600;
     overflow: hidden;
     height: 40px;
-    padding: 0 40px;
+    padding: 0 20px;
 
     &:before {
       content: '[';
@@ -72,7 +76,7 @@ body {
 
     &__list {
       margin-top: 0;
-      padding-left: 110px;
+      padding-left: 60px;
       text-align: left;
       list-style: none;
       
@@ -189,7 +193,8 @@ form button {
 
 #messages {
     list-style-type: none;
-    margin: 0;
+    margin: 70px auto;
+    width: 60%;
     padding: 0;
 }
 
@@ -199,4 +204,9 @@ form button {
 
 #messages li:nth-child(odd) {
     background: #eee;
+}
+
+#form {
+    width: 60%;
+    margin: 0 auto;
 }
