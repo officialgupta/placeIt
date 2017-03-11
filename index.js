@@ -22,7 +22,9 @@ io.on('connection', function(socket){
 	if(loose){
 		pairs[loose]=socket.id;
 		pairs[socket.id]=loose;
+		io.to(loose).emit('chat message', 'you\'re connected!');
 		loose=null;
+		
 	}else{loose=socket.id;}
 
 	console.log(socket.id);
@@ -30,7 +32,7 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('user disconnected');
 
-		io.to(pairs[socket.id]).emit('chat message', 'user disconnected, findingg new');	
+		io.to(pairs[socket.id]).emit('chat message', 'user disconnected, finding new partner');	
 		if(loose){
 			pairs[loose]=pairs[socket.id];
 			pairs[pairs[socket.id]]=loose;
@@ -45,15 +47,16 @@ io.on('connection', function(socket){
 		console.log('message: ' + msg);
 		if(pairs[socket.id]){
 			io.to(pairs[socket.id]).emit('chat message', msg);
+			io.to(socket.id).emit('chat message', msg);
 		}else{
 
-			if(loose){
+			if(loose!=socket.id){
 				pairs[loose]=socket.id;
 				pairs[socket.id]=loose;
 				loose=null;
 			}else{loose=socket.id;}
 
-
+			io.to(socket.id).emit('chat message','You don\'t have a partner! wait for someone to connect!')
 			console.log('failed to send, no partner');
 
 		}
