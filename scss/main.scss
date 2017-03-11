@@ -1,7 +1,9 @@
 $badass: #bada55;
 $font: 'Raleway', sans-serif;
 $col-title: #000;
+$col-accent: #006400;
 $col-bg: #16a085;
+$col-button: #006400;
 $font-title: 'Amatic SC', cursive;
 
 body { 
@@ -179,16 +181,20 @@ form {
 
 form input {
     border: 0;
+    margin: 20px auto auto 40px;
+    height: 15px;
     padding: 10px;
-    width: 90%;
-    margin-right: .5%;
+    width: 60%;
 }
 
 form button {
-    width: 9%;
-    background: rgb(130, 224, 255);
+    width: 11%;
+    margin: 20px 40px auto auto;
+    background: $col-button;
     border: none;
     padding: 10px;
+    float: right;
+    border-radius: 6px;
 }
 
 #messages {
@@ -207,6 +213,14 @@ form button {
 }
 
 #form {
-    width: 60%;
+    width: 55%;
+    height: 75px;
     margin: 0 auto;
+    position: fixed;
+    bottom:0;
+    left: 25%;
+    -webkit-box-shadow: -1px -16px 60px 1px rgba(0,0,0,0.75);  
+    -moz-box-shadow: -1px -16px 60px 1px rgba(0,0,0,0.75);
+    box-shadow: -1px -16px 60px 1px rgba(0,0,0,0.75);
 }
+

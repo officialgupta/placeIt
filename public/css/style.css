@@ -156,20 +156,25 @@ form {
 
 form input {
   border: 0;
+  margin: 20px auto auto 40px;
+  height: 15px;
   padding: 10px;
-  width: 90%;
-  margin-right: .5%; }
+  width: 60%; }
 
 form button {
-  width: 9%;
-  background: #82e0ff;
+  width: 11%;
+  margin: 20px 40px auto auto;
+  background: #006400;
   border: none;
-  padding: 10px; }
+  padding: 10px;
+  float: right;
+  border-radius: 6px; }
 
 #messages {
   list-style-type: none;
   margin: 70px auto;
-  width: 60%; }
+  width: 60%;
+  padding: 0; }
 
 #messages li {
   padding: 5px 10px; }
@@ -178,5 +183,12 @@ form button {
   background: #eee; }
 
 #form {
-  width: 60%;
-  margin: 0 auto; }
+  width: 55%;
+  height: 75px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  left: 25%;
+  -webkit-box-shadow: -1px -16px 60px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px -16px 60px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px -16px 60px 1px rgba(0, 0, 0, 0.75); }
