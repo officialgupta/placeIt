@@ -6,24 +6,23 @@
     
     <script>
         var map;
-        var infoWindow;
         var service;
-        var randomPlace;
-        var placeLatLng;
 
         function init() {
+            //make map, centered in Manchester and radius 5000m
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 53.5, lng: -2.24 },
                 zoom: 15,
             });
 
+            //search criteria: centered in Manchester, radius 5000m and search keyword - attraction
             var request = {
                 location: new google.maps.LatLng(53.5, -2.24),
                 radius: 5000,
                 keyword: 'attraction'
             };
 
-            infoWindow = new google.maps.InfoWindow();
+            //search
             service = new google.maps.places.PlacesService(map);
             service.radarSearch(request, callback);
         }
@@ -33,30 +32,50 @@
                 console.error(status);
                 return;
             }
-            randomPlace = results[Math.floor(Math.random() * results.length)];
+
+            //select a random place from the array of place results
+            var randomPlace = results[Math.floor(Math.random() * results.length)];
             getPlaceDetails(randomPlace);
         }
 
         function getPlaceDetails(place) {
-            /*var request = {
-                placeId: place.place_id.toString()
-            };
-            service.getDetails(request, callback);*/
+            var promise;
+            var name = "";
 
+            //get place_id of the place
+            var id = place.place_id;
+            var request = {
+                placeId: id.toString()
+            };
+
+            //using promise as get details takes a while
+            promise = new Promise(function (resolve, reject) {
+                service.getDetails(request, function (result, status) {
+                    if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                        console.error(status);
+                        return;
+                    }
+                    name = result.name;
+                    resolve(name);
+                });
+            });
+
+            //lat and lng of place
             var lat = place.geometry.location.lat();
-            var long = place.geometry.location.lng();
-            //var id = place.place_id.toString();
-            //var name = place.name;
-            var placeLatLng = [lat, long, name];
-            //console.log(placeLatLng);
-            //console.log(name);
-            return placeLatLng;
+            var lng = place.geometry.location.lng();
+            
+            //name of place
+            promise.then(function (name) {
+                //anything to do with name goes in here
+                var placeLatLngName = [lat, lng, name];
+                console.log(name);
+            });
+            return;
         }
     </script>
 </head>
 <body>
-    <h1>My First Web Page</h1>
-    <p>My first paragraph.</p>
+    <h1>RandomPlace</h1>
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Rzy2ONgsk2rZWRn0qDNdRdv2g0YF5Ak&callback=init&libraries=places" async defer> </script>
 </body>
