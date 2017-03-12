@@ -58,8 +58,8 @@ io.on('connection', function(socket){
 			io.to(socket.id).emit('chat message', msg.replace( new RegExp( "(" + place[socket.id][2]  + ")" , 'gi' ),'***'));
 			if(a){if (a[0]<=place[socket.id][0]+0.001 && a[0]>= place[socket.id][0]-0.001){
 	if (a[1]<=place[socket.id][1]+0.5 && a[1]>= place[socket.id][1]-0.5){
-					io.to(pairs[socket.id]).emit('chat message', 'Yeah! u win!');
-			io.to(socket.id).emit('chat message', 'Yeah! u win!');}}
+					io.to(pairs[socket.id]).emit('chat message', 'Yeah! Your partner guessed correctly!');
+			io.to(socket.id).emit('chat message', 'Yeah! You guessed correctly!');}}
 	}
 		}else{
 
