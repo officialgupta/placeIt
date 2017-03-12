@@ -3,7 +3,7 @@ $font: 'Raleway', sans-serif;
 $col-title: #000;
 $col-accent: #006400;
 $col-bg: #16a085;
-$col-button: #006400;
+$col-button: #16a0F0;
 $font-title: 'Amatic SC', cursive;
 
 body { 
@@ -33,7 +33,7 @@ body {
   overflow:hidden;
   
   font-family: $font-title;
-  font-size: 35px;
+  font-size: 45px;
   line-height: 40px;
   color: $col-title;
   
@@ -78,7 +78,7 @@ body {
 
     &__list {
       margin-top: 0;
-      padding-left: 60px;
+      padding-left: 80px;
       text-align: left;
       list-style: none;
       
@@ -200,7 +200,7 @@ form button {
 #messages {
     list-style-type: none;
     margin: 70px auto;
-    width: 60%;
+    width: 55%;
     padding: 0;
 }
 

@@ -21,7 +21,7 @@ body {
   height: 160px;
   overflow: hidden;
   font-family: "Amatic SC", cursive;
-  font-size: 35px;
+  font-size: 45px;
   line-height: 40px;
   color: #000; }
   .content__container {
@@ -54,7 +54,7 @@ body {
       margin: 0; }
     .content__container__list {
       margin-top: 0;
-      padding-left: 60px;
+      padding-left: 80px;
       text-align: left;
       list-style: none;
       -webkit-animation-name: change;
@@ -164,7 +164,7 @@ form input {
 form button {
   width: 11%;
   margin: 20px 40px auto auto;
-  background: #006400;
+  background: #16a0F0;
   border: none;
   padding: 10px;
   float: right;
@@ -173,7 +173,7 @@ form button {
 #messages {
   list-style-type: none;
   margin: 70px auto;
-  width: 60%;
+  width: 55%;
   padding: 0; }
 
 #messages li {
