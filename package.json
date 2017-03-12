@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build-css": "node-sass --include-path scss scss/main.scss public/css/style.css",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "start": "node index.js"
   },
   "devDependencies": {
     "node-sass": "^4.5.0",
