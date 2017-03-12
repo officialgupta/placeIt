@@ -9,7 +9,7 @@ var loose;
 var a = 0;
 var path = require('path')
 var express = require('express')
-
+var place = {};
 app.use(express.static('public'))
 
 
@@ -25,7 +25,10 @@ io.on('connection', function(socket){
 		io.to(loose).emit('chat message', 'you\'re connected!');
 		loose=null;
 		
-	}else{loose=socket.id;}
+	}else{loose=socket.id;
+	
+		io.to(loose).emit('chat message', 'you\'re not paired up yet, we\'ll find you a partner asap!');
+	}
 
 	console.log(socket.id);
 
@@ -44,10 +47,18 @@ io.on('connection', function(socket){
 		pairs[socket.id]=null;
 	});
 	socket.on('chat message', function(msg){
+		a = msg.replace(/[^0-9\.\-]+/g,",").split(',').filter(Boolean).map(Number);
+		console.log(a);
+		console.log(place[socket.id][0]);
+	if(a){if (a[0]<=place[socket.id][0]+0.5 && a[0]>= place[socket.id][0]-0.5){
+	if (a[1]<=place[socket.id][1]+0.5 && a[1]>= place[socket.id][1]-0.5){
+					io.to(pairs[socket.id]).emit('chat message', 'Yeah! u win!');
+			io.to(socket.id).emit('chat message', 'Yeah! u win!');}}
+	}
 		console.log('message: ' + msg);
 		if(pairs[socket.id]){
-			io.to(pairs[socket.id]).emit('chat message', msg);
-			io.to(socket.id).emit('chat message', msg);
+			io.to(pairs[socket.id]).emit('chat message', msg.replace(place[socket.id][2],'***'));
+			io.to(socket.id).emit('chat message', msg.replace(place[socket.id][2],'***'));
 		}else{
 
 			if(loose!=socket.id){
@@ -62,6 +73,15 @@ io.on('connection', function(socket){
 		}
 	});
 
+
+
+socket.on('location', function(msg){
+		console.log('got location: ' + msg);
+	place[socket.id]=msg;
+io.to(socket.id).emit('chat message', 'your partner must find the coordinates of ' + msg[2]);
+
+
+});
 });
 
 http.listen(3000, function(){
