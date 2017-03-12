@@ -84,7 +84,7 @@ io.to(socket.id).emit('chat message', 'your partner must find the coordinates of
 });
 });
 
-http.listen(3000, function(){
+http.listen((process.env.PORT || 3000), function(){
 	console.log('listening on *:3000');
 });
 
