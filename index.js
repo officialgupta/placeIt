@@ -50,7 +50,7 @@ io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 		a = msg.replace(/[^0-9\.\-]+/g,",").split(',').filter(Boolean).map(Number);
 		console.log(a);
-		console.log(place[socket.id][0]);
+	
 	
 		console.log('message: ' + msg);
 		if(pairs[socket.id]){
