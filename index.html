@@ -10,8 +10,10 @@
 		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
 		<script>
+var socket = io();
+
 			$(function () {
-				var socket = io();
+				
 				$('form').submit(function () {
 					socket.emit('chat message', $('#m').val());
 					$('#m').val('');
@@ -21,10 +23,85 @@
 					$('#messages').append($('<li>').text(msg));
 				});
 			});
+
+
+var map;
+        var service;
+
+        function init() {
+            //make map, centered in Manchester and radius 5000m
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 53.5, lng: -2.24 },
+                zoom: 15,
+            });
+
+            //search criteria: centered in Manchester, radius 5000m and search keyword - attraction
+            var request = {
+                location: new google.maps.LatLng(53.5, -2.24),
+                radius: 5000,
+                keyword: 'attraction'
+            };
+
+            //search
+            service = new google.maps.places.PlacesService(map);
+            service.radarSearch(request, callback);
+        }
+
+        function callback(results, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                console.error(status);
+                return;
+            }
+
+            //select a random place from the array of place results
+            var randomPlace = results[Math.floor(Math.random() * results.length)];
+            getPlaceDetails(randomPlace);
+        }
+
+        function getPlaceDetails(place) {
+            var promise;
+            var name = "";
+
+            //get place_id of the place
+            var id = place.place_id;
+            var request = {
+                placeId: id.toString()
+            };
+
+            //using promise as get details takes a while
+            promise = new Promise(function (resolve, reject) {
+                service.getDetails(request, function (result, status) {
+                    if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                        console.error(status);
+                        return;
+                    }
+                    name = result.name;
+                    resolve(name);
+                });
+            });
+
+            //lat and lng of place
+            var lat = place.geometry.location.lat();
+            var lng = place.geometry.location.lng();
+
+            //name of place
+            promise.then(function (name) {
+                //anything to do with name goes in here
+                var placeLatLngName = [lat, lng, name];
+                console.log(name);
+		    socket.emit('location', placeLatLngName);
+            });
+            return;
+        }
+			
+
 		</script>
 	</head>
 
 	<body>
+		<div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Rzy2ONgsk2rZWRn0qDNdRdv2g0YF5Ak&callback=init&libraries=places" async defer> </script>
+
 		<!-- The title -->
 		<div class="content">
 			<div class="content__container">
